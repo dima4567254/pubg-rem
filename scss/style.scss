@@ -632,7 +632,8 @@ option {
     padding: 0rem 5rem;
     // grid-template-columns: 1fr 8fr;
     // grid-column: 1/12;
-    grid-template-rows: 1fr min-content minmax(10rem, min-content) 1fr;
+    // grid-template-rows: 1fr min-content minmax(10rem, min-content) 1fr;
+    // возможно ровс работает хорошо когда много блоков
     grid-template-columns:
         [sidebar-start] 1fr [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(7, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end] // 2fr
     ;
@@ -640,25 +641,30 @@ option {
     //  grid-column: full-start / center-start;
 
     // @media (max-width: 576px) {
-    //     background-image: none;
+    //     display: none;
     // }
 
-    // @media (max-width: 1200px) {
-    //     // grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
-    //     grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(12, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
-    //     // tab-land
-    // }
+    @media (max-width: 1800px) {
+        // grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+        // grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(12, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+        // tab-land
+        padding: 0rem 3rem;
+    }
+
+    @media (max-width: 1200px) {
+        grid-template-columns: [sidebar-start] 1fr [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(10, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+    }
 
     @media (max-width: 768px) {
 
         // grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
         // grid-template-columns: [sidebar-start] // .3fr
         //     [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(7, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end] // 2fr;
-            // grid-template-columns: 1fr ;// 2fr;
-            // tab-land
-            // 578 остановился
-            
-            grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+        // grid-template-columns: 1fr ;// 2fr;
+        // tab-land
+        // 578 остановился
+
+        grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
 
     }
 
@@ -685,7 +691,7 @@ option {
         z-index: 0;
 
         // @media (max-width: 576px) {
-        //     background-image: none;
+        //     display: none;
         // }
     }
 
@@ -708,7 +714,7 @@ option {
         }
 
         @media (max-width: 768px) {
-            background-image: none;
+            display: none;
         }
     }
 }
@@ -729,12 +735,18 @@ option {
     color: $white;
     position: relative;
     z-index: 4;
-    align-items: end;
+    // align-items: end;
+
+    @media (max-width: 1200px) {
+        grid-column: 2/7;
+        grid-row: 2;
+    }
 
     @media (max-width: 768px) {
         // grid-template-rows:  min-content minmax(6rem, min-content);
-        grid-template-rows: 1fr min-content minmax(10rem, min-content) 1fr;
-        grid-column: full-start / full-end;
+        // grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
+        // grid-column: full-start / full-end;
+        grid-column: 1/11;
     }
 
     // justify-items: end;
@@ -776,7 +788,7 @@ option {
         background-size: cover;
 
         @media (max-width: 768px) {
-            background-image: none;
+            display: none;
         }
 
 
@@ -786,15 +798,15 @@ option {
 
     &__title {
         font-weight: 800;
+     
         font-size: $title-fz;
         text-transform: uppercase;
         margin-bottom: 6rem;
         position: relative;
 
-        // @media (max-width: 576px) {
-        //     font-size: $info-fz;
-        //     margin-bottom: 30px;
-        // }
+        @media (max-width: 576px) {
+            font-size: 4rem;
+        }
 
         &::before {
             content: "";
@@ -865,8 +877,23 @@ option {
         // display: flex;
         // возможно не надо z
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        justify-items: start;
+        grid-template-columns: 0fr 1fr;
+        gap: 2rem;
+
+        // align-items: start;
+        // justify-items: start;
+        // justify-content: start;
+        // align-items: start;
+        // align-self: start;
+        // justify-self: start;
+        // @media (max-width: 1800px) {
+        //     grid-template-columns: 1fr 1fr;
+        // }
+
+        @media (max-width: 576px) {
+            display: block;
+            text-align: center;
+        }
     }
 
     &__link {
@@ -874,6 +901,19 @@ option {
         //     margin-bottom: 20px;
         // }
         font-size: $main-fz;
+
+        @media (max-width: 768px) {
+            // margin-right: 2px;
+            // display: block;
+        }
+
+        @media (max-width: 576px) {
+            // max-width: 100rem;
+            // width: 100%;
+
+            // margin-right: 0;
+            margin-bottom: 20px;
+        }
     }
 
     &__img {
@@ -892,10 +932,18 @@ option {
     &__video {
         padding: 2.3rem 3.8rem;
         font-size: $main-fz;
+        max-width: 27.5rem;
 
-        // @media (max-width: 576px) {
-        //     padding: 18px;
-        // }
+        @media (max-width: 992px) {
+            padding: 2.3rem 2.8rem;
+
+        }
+
+        @media (max-width: 576px) {
+            display: block;
+            // margin: 0 auto;
+            // потом подумать может как то сразу 2 блока выровнять!!!
+        }
     }
 }
 
@@ -903,12 +951,14 @@ option {
     // max-width: 500px;
     // height: 80px;
     // padding: 25px;
-    margin: -2px;
+    // margin: -2px;
     background: transparent;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
     // position: relative;
     // flex-wrap: wrap;
     // margin: 0px -1px 0px 0px;
@@ -935,20 +985,25 @@ option {
     // margin-right: 3.5rem;
     // потом проверить и переделать по месту
     // нельзя задавать бем блоку отступы
-    display: inline-flex;
+    // display: inline-flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    // width: 100%;
     align-items: center;
     transition: color 0.5s;
     // color: $white;
     max-width: 22rem;
     // по бем отступы должны быть отдельно
 
-    // @media (max-width: 576px) {
-    //     font-size: 13px;
-    //     margin-right: 0;
-    //     justify-content: space-between;
-    //     max-width: 140px;
-    //     padding: 18px;
-    // }
+    @media (max-width: 576px) {
+        // font-size: 13px;
+        // margin-right: 0;
+        // justify-content: space-between;
+        // max-width: 140px;
+        // padding: 18px;
+        // max-width: 100%;
+        max-width: 25.5rem;
+    }
 
     &:focus {
         color: $focus;
